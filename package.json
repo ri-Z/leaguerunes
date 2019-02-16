@@ -1,0 +1,12 @@
+{
+  "name": "leaguerunes",
+  "version": "1.0.0",
+  "description": "accessing the yaml file and exporting the results",
+  "main": "server.js",
+  "repository": "https://github.com/theblackskill/leaguerunes.git",
+  "author": "riZ",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.12.1"
+  }
+}
