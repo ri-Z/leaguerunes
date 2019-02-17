@@ -64,10 +64,30 @@ app.get('/yaml', function (req, res) {
   const indentedJson = JSON.stringify(config, null, 4);
   fs.writeFileSync('./runesJSON.json', indentedJson);
   //console.log("indentedJSON", indentedJson);
+
+
+
   const perks = require('./runesJSON.json');
-  const yikes = perks["page-settings"].data.perShardPerkBooks.euw1.pages.name;
-  console.log("yikes", JSON.stringify(yikes));
-  const dumpYAML = yaml.safeDump(JSON.parse(indentedJson));
+  const yikes = perks["page-settings"].data.perShardPerkBooks.euw1.pages[0];
+  //let yikesObjectvalues = Object.values(yikes[0])[8];
+  console.log("yikes - ", yikes['name']);
+
+  yikesNameObjectvalues = "loladamixtape";
+  console.log("yikes1 - ", yikesNameObjectvalues);
+  yikes['name'] = yikesNameObjectvalues;
+  console.log("YIKESMASTER - ", yikes['name']);
+
+  yikesTimeObjectvalues = new Date().getTime();
+  console.log("Timestamp in Ms - ", yikesTimeObjectvalues);
+  yikes['lastModified'] = yikesTimeObjectvalues;
+  console.log("yikesTimeObjectvalues - ", yikes['lastModified']);
+
+  const updatedFile = JSON.stringify(perks, null, 4);
+  fs.writeFileSync('./runesJSON.json', updatedFile);
+
+
+
+  const dumpYAML = yaml.safeDump(JSON.parse(updatedFile));
   //console.log("dumpYAML", dumpYAML);
   fs.writeFileSync('./runesYAML.yaml', dumpYAML);
   res.send(dumpYAML);
