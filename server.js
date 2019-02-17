@@ -62,10 +62,14 @@ app.get('/ab*cd', function(req, res) {
 app.get('/yaml', function (req, res) {
   const config = yaml.safeLoad(fs.readFileSync('PerksPreferences.yaml', 'utf8'));
   const indentedJson = JSON.stringify(config, null, 4);
-  console.log("indentedJSON", indentedJson);
+  fs.writeFileSync('./runesJSON.json', indentedJson);
+  //console.log("indentedJSON", indentedJson);
+  const perks = require('./runesJSON.json');
+  const yikes = perks["page-settings"].data.perShardPerkBooks.euw1.pages.name;
+  console.log("yikes", JSON.stringify(yikes));
   const dumpYAML = yaml.safeDump(JSON.parse(indentedJson));
   //console.log("dumpYAML", dumpYAML);
-  fs.writeFileSync('./runes.yaml', dumpYAML);
+  fs.writeFileSync('./runesYAML.yaml', dumpYAML);
   res.send(dumpYAML);
 })
 
