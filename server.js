@@ -62,8 +62,11 @@ app.get('/ab*cd', function(req, res) {
 app.get('/yaml', function (req, res) {
   const config = yaml.safeLoad(fs.readFileSync('PerksPreferences.yaml', 'utf8'));
   const indentedJson = JSON.stringify(config, null, 4);
-  console.log(indentedJson);
-  res.send(indentedJson);
+  console.log("indentedJSON", indentedJson);
+  const dumpYAML = yaml.safeDump(JSON.parse(indentedJson));
+  console.log("dumpYAML", dumpYAML);
+  fs.writeFileSync('./runes.yaml', dumpYAML);
+  res.send(dumpYAML);
 })
 
 app.get('/dump', function (req, res) {
