@@ -64,7 +64,7 @@ app.get('/yaml', function (req, res) {
   const indentedJson = JSON.stringify(config, null, 4);
   console.log("indentedJSON", indentedJson);
   const dumpYAML = yaml.safeDump(JSON.parse(indentedJson));
-  console.log("dumpYAML", dumpYAML);
+  //console.log("dumpYAML", dumpYAML);
   fs.writeFileSync('./runes.yaml', dumpYAML);
   res.send(dumpYAML);
 })
