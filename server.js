@@ -81,6 +81,12 @@ app.get('/yaml', function (req, res) {
   console.log("Timestamp in Ms - ", yikesTimeObjectvalues);
   yikes['lastModified'] = yikesTimeObjectvalues;
   console.log("yikesTimeObjectvalues - ", yikes['lastModified']);
+  
+  yikesActiveObjectvalues = true;
+  console.log('bool - ', yikesActiveObjectvalues);
+  yikes['isActive'] = yikesActiveObjectvalues;
+  console.log("yikesActiveObjectvalues - ", yikes['isActive']);
+
 
   const updatedFile = JSON.stringify(perks, null, 4);
   fs.writeFileSync('./runesJSON.json', updatedFile);
