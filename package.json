@@ -9,6 +9,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "js-yaml": "^3.12.1",
-    "lcu-connector": "^2.1.0"
+    "lcu-connector": "^2.1.0",
+    "request": "^2.88.0"
   }
 }

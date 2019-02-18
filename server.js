@@ -1,5 +1,8 @@
 const LCUConnector = require('lcu-connector');
 const connector = new LCUConnector();
+const api = require('./methods');
+
+
 const http = require('http');
 const fs = require('fs');
 const yaml = require('js-yaml');
@@ -123,7 +126,23 @@ connector.on('connect', (data) => {
   //    password: H9y4kOYVkmjWu_5mVIg1qQ,
   //    protocol: 'https'
   //  }
+  api.bind(data);
+});
+
+connector.on('disconnect', () => {
+	console.log("client closed");
 });
 
 // Start listening for the LCU client
 connector.start();
+
+
+api.get("/lol-summoner/v1/current-summoner").then((summoner) => {
+  if(!summoner) {
+    console.log("no summoner response");
+    return;
+  }else{
+    console.log(summoner);
+    console.log(summoner.displayName);
+  }
+});
