@@ -136,13 +136,26 @@ connector.on('disconnect', () => {
 // Start listening for the LCU client
 connector.start();
 
+app.get('/update', function (req, res) {
+  api.get("/lol-summoner/v1/current-summoner").then((summoner) => {
+    if(!summoner) {
+      console.log("no summoner response");
+      return;
+    }else{
+      //console.log(summoner);
+      console.log(summoner.displayName);
+    }
+    res.send(summoner);
+  });
 
-api.get("/lol-summoner/v1/current-summoner").then((summoner) => {
-  if(!summoner) {
-    console.log("no summoner response");
-    return;
-  }else{
-    console.log(summoner);
-    console.log(summoner.displayName);
-  }
-});
+
+  api.get("/network-testing/v1/game-latency").then((latency) => {
+    if(!latency) {
+      console.log("no latency response");
+      return;
+    }else{
+      console.log(latency);
+      console.log(latency.results["latency"]);
+    }
+  });
+})
