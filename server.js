@@ -159,3 +159,25 @@ app.get('/update', function (req, res) {
     }
   });
 })
+
+
+app.get('/createrune', function (req, res) {
+  
+  api.del("/lol-perks/v1/pages/").then((res) => {
+			console.log("api delete current page", res);
+  });
+
+  api.post("/lol-perks/v1/pages/").then((res) => {
+			console.log("api post on current page", res);
+  });
+
+   res.send('Rune Created?');
+})
+
+
+// app.post('/createrune', function (req, res) {
+  
+  
+
+//   res.send('Rune Created?');
+// })
